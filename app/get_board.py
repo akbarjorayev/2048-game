@@ -8,7 +8,6 @@ for cord in random_cords:
 
 labels = []
 
-# Define colors for specific numbers
 colors = {
     2: "#eee4da",
     4: "#ede0c8",
