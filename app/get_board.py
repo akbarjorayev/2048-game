@@ -8,6 +8,21 @@ for cord in random_cords:
 
 labels = []
 
+# Define colors for specific numbers
+colors = {
+    2: "#eee4da",
+    4: "#ede0c8",
+    8: "#f2b179",
+    16: "#f59563",
+    32: "#f67c5f",
+    64: "#f65e3b",
+    128: "#edcf72",
+    256: "#edcc61",
+    512: "#edc850",
+    1024: "#edc53f",
+    2048: "#edc22e",
+}
+
 
 def get_board(root):
     global labels
@@ -35,13 +50,14 @@ def get_board(root):
     for row in range(4):
         row_labels = []
         for col in range(4):
+            value = board.board[row][col]
             box = tk.Label(
                 frame,
-                bg="gray",
-                fg="white",
+                bg=colors.get(value, "gray"),
+                fg="black" if value in (2, 4) else "white",
                 relief="ridge",
                 borderwidth=1,
-                text=str(board.board[row][col]),
+                text=str(value) if value != 0 else "",
                 font=("Segoe UI", 20),
             )
             box.place(
@@ -62,4 +78,9 @@ def update_board(move):
 
     for row in range(4):
         for col in range(4):
-            labels[row][col].config(text=str(board.board[row][col]))
+            value = board.board[row][col]
+            labels[row][col].config(
+                text=str(value) if value != 0 else "",
+                bg=colors.get(value, "gray"),
+                fg="black" if value in (2, 4) else "white",
+            )
