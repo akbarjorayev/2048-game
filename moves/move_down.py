@@ -6,17 +6,14 @@ def move_down():
         new_column = [board[i][j] for i in range(len(board)) if board[i][j] != 0]
         merged_column = []
 
-        i = len(new_column) - 1
-        while i > 0:
-            if new_column[i] == new_column[i - 1]:
+        i = 0
+        while i < len(new_column):
+            if i < len(new_column) - 1 and new_column[i] == new_column[i + 1]:
                 merged_column.append(new_column[i] * 2)
-                i -= 1
+                i += 2
             else:
                 merged_column.append(new_column[i])
-            i -= 1
-
-        if i == 0:
-            merged_column.append(new_column[i])
+                i += 1
 
         merged_column = [0] * (len(board) - len(merged_column)) + merged_column
 

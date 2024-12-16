@@ -7,18 +7,17 @@ def move_up():
         merged_column = []
 
         i = 0
-        while i < len(new_column) - 1:
-            if new_column[i] == new_column[i + 1]:
+        while i < len(new_column):
+            if i < len(new_column) - 1 and new_column[i] == new_column[i + 1]:
                 merged_column.append(new_column[i] * 2)
-                i += 1
+                i += 2
             else:
                 merged_column.append(new_column[i])
-            i += 1
+                i += 1
 
-        if i == len(new_column) - 1:
-            merged_column.append(new_column[i])
+        merged_column += [0] * (len(board) - len(merged_column))
 
         for i in range(len(board)):
-            board[i][j] = merged_column[i] if i < len(merged_column) else 0
+            board[i][j] = merged_column[i]
 
     return board

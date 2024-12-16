@@ -7,18 +7,15 @@ def move_left():
         merged_row = []
 
         j = 0
-        while j < len(new_row) - 1:
-            if new_row[j] == new_row[j + 1]:
+        while j < len(new_row):
+            if j < len(new_row) - 1 and new_row[j] == new_row[j + 1]:
                 merged_row.append(new_row[j] * 2)
-                j += 1
+                j += 2
             else:
                 merged_row.append(new_row[j])
-            j += 1
+                j += 1
 
-        if j == len(new_row) - 1:
-            merged_row.append(new_row[j])
-
-        merged_row = merged_row + [0] * (len(board[i]) - len(merged_row))
+        merged_row += [0] * (len(board[i]) - len(merged_row))
 
         board[i] = merged_row
 
